@@ -718,18 +718,6 @@ defmodule Toml.Decoder do
 
       {:date, {:error, reason}} ->
         {:error, {:invalid_date, reason, datestr}, skip, lines}
-
-      {:datetime, {:error, :invalid_date}} ->
-        {:error, {:invalid_datetime, {datestr, time}}, skip, lines}
-
-      {:datetime, {:error, reason}} ->
-        {:error, {:invalid_date, reason, {datestr, time}}, skip, lines}
-
-      {:error, _, _, _} = err ->
-        err
-
-      {:ok, {type, skip, data, lines}} ->
-        {:error, {:invalid_token, {type, data}}, skip, lines}
     end
   end
 
@@ -814,14 +802,8 @@ defmodule Toml.Decoder do
       {:error, _, _, _} = err ->
         err
 
-      {:close, {:error, _, _, _} = err} ->
-        err
-
       {:close, {_oline, _ocol} = opened, {:ok, {_, eskip, _, elines}}} ->
         {:error, {:unclosed_array, opened}, eskip, elines}
-
-      {:valid?, err} ->
-        err
     end
   end
 
@@ -832,9 +814,6 @@ defmodule Toml.Decoder do
       {:ok, {:inline_table, elements}}
     else
       {:error, _, _, _} = err ->
-        err
-
-      {:close, {:error, _, _, _} = err} ->
         err
 
       {:close, {_oskip, _olines} = opened, {:ok, {_, eskip, _, elines}}} ->
