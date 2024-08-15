@@ -103,7 +103,7 @@ defmodule Toml.CLI do
     Usage:
       toml [flags]
       toml [command] [flags]
-      
+
     Available Commands:
       convert  Convert TOML content to another format.
       help     Show help
@@ -118,7 +118,7 @@ defmodule Toml.CLI do
 
     Usage:
       toml convert [flags]
-      
+
     Flags:
       -f, --file       Specify a file to convert
       --stdin          Read TOML content from standard input
@@ -136,7 +136,7 @@ defmodule Toml.CLI do
 
     Usage:
       toml validate [flags]
-      
+
     Flags:
       -f, --file      Specify a file to validate
       --stdin         Read TOML content from standard input
