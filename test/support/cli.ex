@@ -3,6 +3,7 @@ defmodule Toml.CLI do
 
   defstruct [:callback, :input, :argv, :opts]
 
+  @spec main(any()) :: no_return()
   def main(args) do
     opts = parse_args!(args)
     opts.callback.(opts)
@@ -195,6 +196,7 @@ defmodule Toml.CLI do
     do: Toml.decode_stream(stream)
 
   # Write an error to stderr and halt non-zero
+  @spec fail!({:error, any()}) :: no_return()
   defp fail!({:error, reason}) when is_binary(reason) do
     IO.puts(:standard_error, reason)
     System.halt(1)
